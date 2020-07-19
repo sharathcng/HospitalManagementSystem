@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect,reverse
 from django.contrib.auth.models import User
 from django.contrib import auth
-from . models import extendedUser
+from .models import extendedUser
 from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
-@login_required(login_url="/drLoginPage/")
+@login_required(login_url = "/drLoginPage/")
 def dr_dashboard(request):
     data = extendedUser.objects.filter(user=request.user)
     return render(request,'doctor/dashboard.html',{'data':data})
@@ -37,14 +37,16 @@ def dr_SignUp_Page(request):
     else:
         return render(request,'doctor/drSignUpPage.html')
 
+
+
 def dr_Login_Page(request):
     if request.method == "POST":
         user = auth.authenticate(username=request.POST['username'],password=request.POST['password'])
         if user is not None:
-            auth.login(request,user)
+            auth.login(request, user)
             return redirect(dr_dashboard)
         else:
-            return render(request,'doctor/drLoginPage.html',{'usernameError':username+"doesnot exist"})
+            return render(request,'doctor/drLoginPage.html',{'usernameError':username + "doesnot exist"})
     else:
         return render(request,'doctor/drLoginPage.html')
 
