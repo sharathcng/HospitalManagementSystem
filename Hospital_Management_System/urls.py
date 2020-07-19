@@ -20,6 +20,6 @@ from doctor import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('HomePage.urls')),
-    path('', include('doctor.urls')),
+    path('doctor/', include('doctor.urls')),
 
 ]

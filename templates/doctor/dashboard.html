@@ -3,10 +3,10 @@
 
 {% block content %}
 <div class="container">
-    {% for d in data %}
-        <h4>{{ d.mobileNumber }}</h4>
-        <h4>{{ d.gender }}</h4>
-    {% endfor %}
+    
+        <h4>{{ request.user }}</h4>
+        <!-- <h4>{{ d.gender }}</h4> -->
+    
     <form method="POST" action="{% url 'drLoginPage' %}" id="signup-form" class="signup-form">
         {% csrf_token %}
             <div class="form-group">
